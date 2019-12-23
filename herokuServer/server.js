@@ -9,11 +9,11 @@ const app = express();
 app.use(express.json());
 
 // DB Config
-const db = config.get('mongoURI');
+// const db = config.get('mongoURI');
 
 // Connect to Mongo
 mongoose
-  .connect(db, { 
+  .connect("mongodb+srv://ars123:wwe12345@cluster0-nhqdc.mongodb.net/test?retryWrites=true&w=majority", { 
     useNewUrlParser: true,
     useCreateIndex: true
   }) // Adding new mongo url parser
