@@ -1,21 +1,25 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const config = require('config');
+// const config = require('config');
 
 const app = express();
+
+require('dotenv').config({ path: 'variables.env'});
+
 
 // Bodyparser Middleware
 app.use(express.json());
 
 // DB Config
-// const db = config.get('mongoURI');
+const db = process.env.DB_URL;
 
 // Connect to Mongo
 mongoose
-  .connect("mongodb+srv://ars123:wwe12345@cluster0-nhqdc.mongodb.net/test?retryWrites=true&w=majority", { 
+  .connect(db, { 
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useUnifiedTopology: true
   }) // Adding new mongo url parser
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
